@@ -10,14 +10,48 @@ class Calculator extends StatefulWidget {
 class _CalculatorState extends State<Calculator> {
 final TextEditingController _num1controller=TextEditingController();
 final TextEditingController _num2controller=TextEditingController();
-int result = 0;
+double result = 0;
 void add(){
   print('num1= ${_num1controller.text} ,num2= ${_num2controller.text}');
-  int num1=int.parse(_num1controller.text);
-  int num2=int.parse(_num2controller.text);
+  double num1=double.parse(_num1controller.text);
+  double num2=double.parse(_num2controller.text);
   print(num1 + num2);
   setState(() {
     result = num1 + num2;
+  });
+}
+void subtract(){
+  print('num1= ${_num1controller.text} ,num2= ${_num2controller.text}');
+  double num1=double.parse(_num1controller.text);
+  double num2=double.parse(_num2controller.text);
+  print(num1 - num2);
+  setState(() {
+    result = num1 - num2;
+  });
+}
+void multiply(){
+  print('num1= ${_num1controller.text} ,num2= ${_num2controller.text}');
+  double num1=double.parse(_num1controller.text);
+  double num2=double.parse(_num2controller.text);
+  print(num1 * num2);
+  setState(() {
+    result = num1 * num2;
+  });
+}
+void division(){
+  print('num1= ${_num1controller.text} ,num2= ${_num2controller.text}');
+  double num1=double.parse(_num1controller.text);
+  double num2=double.parse(_num2controller.text);
+  print(num1 / num2);
+  setState(() {
+    result = num1 / num2;
+  });
+}
+void clear(){
+  setState(() {
+    _num1controller.clear();
+    _num2controller.clear();
+    result = 0;
   });
 }
   @override
@@ -45,7 +79,7 @@ void add(){
               SizedBox(width: 50),
               ElevatedButton(onPressed: (){add();}, child: Text('+')),
               SizedBox(width: 30),
-              ElevatedButton(onPressed: (){}, child: Text('-')),
+              ElevatedButton(onPressed: (){subtract();}, child: Text('-')),
             ],
           ),
           SizedBox(height: 20,),
@@ -62,16 +96,18 @@ void add(){
                 ),
               ),
               SizedBox(width: 50),
-              ElevatedButton(onPressed: (){}, child: Text('*')),
+              ElevatedButton(onPressed: (){multiply();}, child: Text('*')),
               SizedBox(width: 30),
-              ElevatedButton(onPressed: (){}, child: Text ('/')),
+              ElevatedButton(onPressed: (){division();}, child: Text ('/')),
             ],
           ),
           SizedBox(height: 20,),
           ListTile(
             tileColor: Colors.teal,
             title: Center(child: Text('Result = $result')),
-          )
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(onPressed: (){clear();}, child: Text ('Clear')),
         ],
       ),
     ));
